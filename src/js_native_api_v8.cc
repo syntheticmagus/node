@@ -2,10 +2,8 @@
 #include <cmath>
 #include <algorithm>
 #define NAPI_EXPERIMENTAL
-#include "env-inl.h"
 #include "js_native_api_v8.h"
 #include "js_native_api.h"
-#include "util-inl.h"
 
 #define CHECK_MAYBE_NOTHING(env, maybe, status) \
   RETURN_STATUS_IF_FALSE((env), !((maybe).IsNothing()), (status))
@@ -2953,6 +2951,13 @@ napi_status napi_run_script(napi_env env,
 
   *result = v8impl::JsValueFromV8LocalValue(script_result.ToLocalChecked());
   return GET_RETURN_STATUS(env);
+}
+
+napi_status napi_run_script(napi_env env,
+                            napi_value script,
+                            const char* sourceUrl,
+                            napi_value* result) {
+  return napi_run_script(env, script, result);
 }
 
 napi_status napi_add_finalizer(napi_env env,
