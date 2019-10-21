@@ -2953,13 +2953,6 @@ napi_status napi_run_script(napi_env env,
   return GET_RETURN_STATUS(env);
 }
 
-napi_status napi_run_script(napi_env env,
-                            napi_value script,
-                            const char* sourceUrl,
-                            napi_value* result) {
-  return napi_run_script(env, script, result);
-}
-
 napi_status napi_add_finalizer(napi_env env,
                                napi_value js_object,
                                void* native_object,
